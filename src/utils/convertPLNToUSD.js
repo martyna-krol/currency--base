@@ -1,21 +1,27 @@
 export const convertPLNToUSD = (PLN) => {
 
   function validateValue(num) {
-    num = parseFloat(num);
-  
-    if (isNaN(num)) {
+    if (typeof num === 'string' || num instanceof String) {
       return NaN; 
     } else {
-      return formatter.format(num).replace(/\u00a0/g, ' '); 
+      return num;
     }
   }
 
-  const PLNtoUSD = PLN / 3.5;
+  const PLNtoUSD = validateValue(PLN) / 3.5;
   
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
   });
 
-  return validateValue(PLNtoUSD);
+  function checkNaN(num) {
+    if (isNaN(num) === true) {
+      return NaN;
+    } else {
+      return formatter.format(num).replace(/\u00a0/g, ' ');
+    }
+  }
+
+  return checkNaN(PLNtoUSD);
 }
