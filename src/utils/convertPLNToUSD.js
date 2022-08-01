@@ -3,8 +3,14 @@ export const convertPLNToUSD = (PLN) => {
   function validateValue(num) {
     if (typeof num === 'string' || num instanceof String) {
       return NaN; 
+    } else if (typeof num === 'number'){
+      if (num > 0) {
+        return num;
+      } else {
+        return 0;
+      }
     } else {
-      return num;
+      return 'Error';
     }
   }
 
@@ -18,8 +24,10 @@ export const convertPLNToUSD = (PLN) => {
   function checkNaN(num) {
     if (isNaN(num) === true) {
       return NaN;
-    } else {
+    } else if (typeof num === 'number'){
       return formatter.format(num).replace(/\u00a0/g, ' ');
+    } else {
+      return 'Error';
     }
   }
 
