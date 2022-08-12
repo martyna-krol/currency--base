@@ -40,9 +40,10 @@ describe('Component CurrencyForm', () => {
     
         // check if action callback was called once and with proper argument
         expect(action).toHaveBeenCalledTimes(1);
-        expect(action).toHaveBeenCalledWith({ amount: testObj.amount, from: testObj.from, to: testObj.to });
+        expect(action).toHaveBeenCalledWith({ amount: parseInt(testObj.amount), from: testObj.from, to: testObj.to });
 
         // unmount component
+        //
         cleanup();
       };
         
